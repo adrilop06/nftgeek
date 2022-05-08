@@ -1,5 +1,7 @@
 //expres route require first express
 const express = require('express');
+
+const cors = require("cors");
 //import functions from controller object
 const {userRegController, 
     userLogController,
@@ -19,31 +21,25 @@ const {fileImages, profileResize } = require('../../Middlewares/Upload/imgUpload
 //call the function from express
 const userRoutes = express.Router();
 
-userRoutes.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
-
 //reference de registration controller
-userRoutes.post('/registration',fileImages.single("photo"),profileResize, userRegController);
+userRoutes.post('/registration', cors(), fileImages.single("photo"),profileResize, userRegController);
 //reference de login controller
-userRoutes.post('/login', userLogController);
+userRoutes.post('/login', cors(), userLogController);
 //photo profile
-userRoutes.put('/profilephoto', authorizationMiddleware, fileImages.single("image"), profileResize, userPhotoController);
+userRoutes.put('/profilephoto', cors(), authorizationMiddleware, fileImages.single("image"), profileResize, userPhotoController);
 //get all users 
-userRoutes.get('/', authorizationMiddleware, fetchUserController);
+userRoutes.get('/', cors(), authorizationMiddleware, fetchUserController);
 //change the password by the user
-userRoutes.put('/password',authorizationMiddleware, userUpdatePassController);
+userRoutes.put('/password', cors(),authorizationMiddleware, userUpdatePassController);
 //get the user profile
-userRoutes.get("/profile/:id",authorizationMiddleware, userProfileController);
+userRoutes.get("/profile/:id", cors(), authorizationMiddleware, userProfileController);
 //update de users profile
-userRoutes.put('/:id',authorizationMiddleware, userUpdateController);
+userRoutes.put('/:id', cors(), authorizationMiddleware, userUpdateController);
 //delete user. We need the specific ID of the user. We get
 //the param in the route
-userRoutes.delete('/:id', userDeleteController);
+userRoutes.delete('/:id', cors(), userDeleteController);
 //get the user information
-userRoutes.get('/:id', fetchUserDetail);
+userRoutes.get('/:id', cors(), fetchUserDetail);
 
 
 

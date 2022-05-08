@@ -1,4 +1,6 @@
 const express = require ('express');
+
+const cors = require("cors");
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
 //impost post controller
@@ -18,26 +20,26 @@ const {fileImages, imgResize} = require('../../Middlewares/Upload/imgUpload');
 
 console.log("routes")
 //create a post
-postRoute.post('/',authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
+postRoute.post('/', cors(), authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
 //likes post
-postRoute.put('/likes',authorizationMiddleware, likePostController);
+postRoute.put('/likes', cors(), authorizationMiddleware, likePostController);
 //likes post
-postRoute.put('/mark',authorizationMiddleware, bookMarkPostController);
+postRoute.put('/mark', cors(), authorizationMiddleware, bookMarkPostController);
 //get all post
-postRoute.get('/', fetchPostsController);
+postRoute.get('/', cors(), fetchPostsController);
 //get all post tag
-postRoute.get('/', fetchPostsTagController);
+postRoute.get('/', cors(), fetchPostsTagController);
 //get all post user
-postRoute.get('/', fetchPostsUserController);
+postRoute.get('/', cors(), fetchPostsUserController);
 //get one post by id
-postRoute.get('/:id', fetchPostController);
+postRoute.get('/:id', cors(), fetchPostController);
 //get search
-postRoute.get('/results/:title', fetchSearchPostController);
+postRoute.get('/results/:title', cors(), fetchSearchPostController);
 
 //update post
-postRoute.put('/:id',authorizationMiddleware,fileImages.single("image"),  imgResize,updatePostController );
+postRoute.put('/:id', cors(), authorizationMiddleware,fileImages.single("image"),  imgResize,updatePostController );
 //remove post
-postRoute.delete('/:id',authorizationMiddleware, removePostController );
+postRoute.delete('/:id', cors(), authorizationMiddleware, removePostController );
 
 
 module.exports = postRoute;
