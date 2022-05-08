@@ -26,8 +26,8 @@ postRoute.use(function(req, res, next) {
     next();
 });
 */
-app.use(cors());
-
+postRoute.use(cors());
+postRoute.options('*', cors());
 //create a post
 postRoute.post('/', authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
 //likes post

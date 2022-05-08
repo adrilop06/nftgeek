@@ -11,7 +11,9 @@ const {
 } = require('../../Controller/Bookmark/bookmarkController');
 
 
+
 bookmarkRoute.use(cors());
+bookmarkRoute.options('*', cors());
 //create bookmark
 bookmarkRoute.post('/',authorizationMiddleware, createBookmarkController);
 

@@ -12,7 +12,11 @@ const {
 } = require('../../Controller/Tag/tagController');
 const tagRoute = express.Router();
 
+
+
 tagRoute.use(cors());
+tagRoute.options('*', cors());
+
 //create tag
 tagRoute.post('/', authorizationMiddleware, createTagController);
 //Fetch all tags

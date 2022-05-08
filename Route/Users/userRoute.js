@@ -20,7 +20,10 @@ const {fileImages, profileResize } = require('../../Middlewares/Upload/imgUpload
 //profile photo middleware
 //call the function from express
 const userRoutes = express.Router();
-userRoute.use(cors());
+
+userRoutes.use(cors());
+userRoutes.options('*', cors());
+
 //reference de registration controller
 userRoutes.post('/registration', fileImages.single("photo"),profileResize, userRegController);
 //reference de login controller
