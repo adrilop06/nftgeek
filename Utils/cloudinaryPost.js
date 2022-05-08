@@ -7,11 +7,10 @@ const dotenv = require ("dotenv");
 dotenv.config();
 
 
-
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: 'dq4jtliel',
+  api_key:  '186469361926977',
+  api_secret: 'bUYDrcPbFNwu3CJzqS_zc3--_DE',
   
 });
 

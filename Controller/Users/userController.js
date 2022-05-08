@@ -11,6 +11,8 @@ const profileCloudinary = require("../../Utils/cloudinaryProfile");
 
 const fs = require ('fs');
 
+
+
 //REGISTRATION// 
 /*******************************************/
 //This controller the call for registration process
