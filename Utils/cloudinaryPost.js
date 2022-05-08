@@ -2,14 +2,11 @@
 const cloudinary = require('cloudinary');
 //import dotenv
 const dotenv = require ("dotenv");
-const express = require("express");
 
-const cloudinaryRoute = express.Router();
 //dotenv
 dotenv.config();
 
-cloudinaryRoute.use(cors());
-cloudinaryRoute.options('*', cors());
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
