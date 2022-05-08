@@ -11,7 +11,10 @@ const {
         removeCommentController 
 } = require('../../Controller/Comments/commentController');
 
+
 commentRoute.use(cors());
+commentRoute.options('*', cors());
+
 //create comment
 commentRoute.post('/',authorizationMiddleware, createCommentController);
 //Fetch all comments
