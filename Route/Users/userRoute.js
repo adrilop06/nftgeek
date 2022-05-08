@@ -19,6 +19,11 @@ const {fileImages, profileResize } = require('../../Middlewares/Upload/imgUpload
 //call the function from express
 const userRoutes = express.Router();
 
+userRoutes.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 //reference de registration controller
 userRoutes.post('/registration',fileImages.single("photo"),profileResize, userRegController);

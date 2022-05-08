@@ -131,7 +131,7 @@ const fetchUserDetail = asyncHandler(async (req, res) => {
 
 //USER PROFILE
 /***************************************************/
-//ONLY the login users can se the profile
+//ONLY the login users can see the profile
 const userProfileController = asyncHandler (async (req, res) => {
     const {id} = req.params;
     validID(id);
