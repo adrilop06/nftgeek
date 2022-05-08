@@ -1,4 +1,6 @@
 const express = require ('express');
+
+const cors = require("cors");
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
 const { 
@@ -11,15 +13,15 @@ const {
 const tagRoute = express.Router();
 
 //create tag
-tagRoute.post('/',authorizationMiddleware, createTagController);
+tagRoute.post('/',cors(), authorizationMiddleware, createTagController);
 //Fetch all tags
-tagRoute.get('/', fetchAllTagsController);
+tagRoute.get('/', cors(), fetchAllTagsController);
 //Fetch one tags
-tagRoute.get('/:slug', fetchTagController);
+tagRoute.get('/:slug', cors(), fetchTagController);
 //Update tag
-tagRoute.put('/:slug',authorizationMiddleware, updateTagController);
+tagRoute.put('/:slug',cors(), authorizationMiddleware, updateTagController);
 //Remove tag
-tagRoute.delete('/:id',authorizationMiddleware, removeTagController);
+tagRoute.delete('/:id',cors(), authorizationMiddleware, removeTagController);
 
 
 module.exports = tagRoute;
