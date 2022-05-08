@@ -225,7 +225,7 @@ const fetchSearchPostController = asyncHandler (async (req, res) => {
     try {
         //check category
         if(title){
-            const posts = await Post.find({"title" : {$regex : title}}).populate("user").populate("comments");
+            const posts = await Post.find({"title" : {$regex: title, $options: 'i'}}).populate("user").populate("comments");
             res.json(posts);
         }else{
             const posts = await Post.find({}).populate("user").populate("comments");
