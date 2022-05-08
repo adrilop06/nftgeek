@@ -17,7 +17,7 @@ const { createPostController,
  }= require('../../Controller/Posts/postController');
 const postRoute = express.Router();
 const {fileImages, imgResize} = require('../../Middlewares/Upload/imgUpload');
-
+/*
 postRoute.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
@@ -25,8 +25,9 @@ postRoute.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Authorization, Access-Control-Request-Method, Access-Control-Request-Headers");
     next();
 });
+*/
+app.use(cors());
 
-console.log("routes")
 //create a post
 postRoute.post('/', authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
 //likes post
