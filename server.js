@@ -45,8 +45,8 @@ In this case, the function is executed on requests that have a payload of json o
 app.use(express.json());
 
 //use cors
-app.use(cors());
-
+//app.use(cors());
+app.options('*', cors())
 //registration user process. Post and update user information
 //route user
 //in case of user petition route check te kind and call the component post or get
