@@ -57,7 +57,12 @@ var corsOptionsDelegate = function (req, callback) {
 
 //use cors
 //app.use(cors());
-app.options('*', cors(corsOptionsDelegate))
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+// app.options('*', cors(corsOptionsDelegate))
 //registration user process. Post and update user information
 //route user
 //in case of user petition route check te kind and call the component post or get
