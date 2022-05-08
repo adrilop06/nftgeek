@@ -18,6 +18,7 @@ const  createPostController = asyncHandler(async (req, res) =>{
     validID(id);
     const localPath = `Public/img/posts/${req.file.filename}`;
     const img = await imgCloudinary(localPath);
+    console.log(img);
     try{
         const post = await Post.create({
         ...req.body,
