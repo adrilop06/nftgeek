@@ -1,5 +1,6 @@
 const express = require ('express');
 const bookmarkRoute = express.Router();
+const cors = require("cors");
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
 const { 
@@ -10,7 +11,7 @@ const {
 } = require('../../Controller/Bookmark/bookmarkController');
 
 
-
+bookmarkRoute.use(cors());
 //create bookmark
 bookmarkRoute.post('/',authorizationMiddleware, createBookmarkController);
 

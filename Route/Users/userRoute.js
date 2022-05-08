@@ -20,26 +20,26 @@ const {fileImages, profileResize } = require('../../Middlewares/Upload/imgUpload
 //profile photo middleware
 //call the function from express
 const userRoutes = express.Router();
-
+userRoute.use(cors());
 //reference de registration controller
-userRoutes.post('/registration', cors(), fileImages.single("photo"),profileResize, userRegController);
+userRoutes.post('/registration', fileImages.single("photo"),profileResize, userRegController);
 //reference de login controller
-userRoutes.post('/login', cors(), userLogController);
+userRoutes.post('/login', userLogController);
 //photo profile
-userRoutes.put('/profilephoto', cors(), authorizationMiddleware, fileImages.single("image"), profileResize, userPhotoController);
+userRoutes.put('/profilephoto', authorizationMiddleware, fileImages.single("image"), profileResize, userPhotoController);
 //get all users 
-userRoutes.get('/', cors(), authorizationMiddleware, fetchUserController);
+userRoutes.get('/', authorizationMiddleware, fetchUserController);
 //change the password by the user
-userRoutes.put('/password', cors(),authorizationMiddleware, userUpdatePassController);
+userRoutes.put('/password',authorizationMiddleware, userUpdatePassController);
 //get the user profile
-userRoutes.get("/profile/:id", cors(), authorizationMiddleware, userProfileController);
+userRoutes.get("/profile/:id", authorizationMiddleware, userProfileController);
 //update de users profile
-userRoutes.put('/:id', cors(), authorizationMiddleware, userUpdateController);
+userRoutes.put('/:id', authorizationMiddleware, userUpdateController);
 //delete user. We need the specific ID of the user. We get
 //the param in the route
-userRoutes.delete('/:id', cors(), userDeleteController);
+userRoutes.delete('/:id', userDeleteController);
 //get the user information
-userRoutes.get('/:id', cors(), fetchUserDetail);
+userRoutes.get('/:id', fetchUserDetail);
 
 
 

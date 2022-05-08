@@ -1,5 +1,5 @@
 const express = require ('express');
-
+const cors = require("cors");
 
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
@@ -12,7 +12,7 @@ const {
 } = require('../../Controller/Category/categoryController');
 
 const categoryRoute = express.Router();
-
+categoryRoute.use(cors());
 //create category
 categoryRoute.post('/',authorizationMiddleware, createCategoryController,);
 //Fetch all categorys

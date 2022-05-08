@@ -12,16 +12,17 @@ const {
 } = require('../../Controller/Tag/tagController');
 const tagRoute = express.Router();
 
+tagRoute.use(cors());
 //create tag
-tagRoute.post('/',cors(), authorizationMiddleware, createTagController);
+tagRoute.post('/', authorizationMiddleware, createTagController);
 //Fetch all tags
-tagRoute.get('/', cors(), fetchAllTagsController);
+tagRoute.get('/', fetchAllTagsController);
 //Fetch one tags
-tagRoute.get('/:slug', cors(), fetchTagController);
+tagRoute.get('/:slug', fetchTagController);
 //Update tag
-tagRoute.put('/:slug',cors(), authorizationMiddleware, updateTagController);
+tagRoute.put('/:slug', authorizationMiddleware, updateTagController);
 //Remove tag
-tagRoute.delete('/:id',cors(), authorizationMiddleware, removeTagController);
+tagRoute.delete('/:id', authorizationMiddleware, removeTagController);
 
 
 module.exports = tagRoute;

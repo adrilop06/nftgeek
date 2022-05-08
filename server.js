@@ -44,16 +44,7 @@ In this case, the function is executed on requests that have a payload of json o
 */
 app.use(express.json());
 
-var whitelist = ['https://grand-meerkat-38cb86.netlify.app']
-var corsOptionsDelegate = function (req, callback) {
-  var corsOptions;
-  if (whitelist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false } // disable CORS for this request
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
-}
+
 
 //use cors
 //app.use(cors());
