@@ -16,17 +16,15 @@ const  createPostController = asyncHandler(async (req, res) =>{
     
     const {id} = req?.user;
     validID(id);
-    const localPath = `Public/img/posts/${req?.file?.filename}`;
+    const localPath = `Public/img/posts/${req.file.filename}`;
     const img = await imgCloudinary(localPath);
-    console.log(img);
     try{
         const post = await Post.create({
-        ...req?.body,
+        ...req.body,
         image: img?.url, 
         user: id,
         userName:req?.userName,
         userImage:req?.user.photo,
-        
     });
         res.json(post);
         //delete the img from folder after uploader
@@ -39,7 +37,7 @@ const  createPostController = asyncHandler(async (req, res) =>{
 //GET ALL POSTS//FETCH BY CATEGORY
 /*************************************************************/
 const fetchPostsController = asyncHandler (async (req, res) => {
-    const cat = req?.query?.category;
+    const cat = req.query.category;
     try {
         //check category
         if(cat){
@@ -78,7 +76,7 @@ const fetchPostsUserController = asyncHandler (async (req, res) => {
 //FETCH POST BY TAG
 //*********************************************/
 const fetchPostsTagController = asyncHandler (async (req, res) => {
-    const tag = req?.query?.tag;
+    const tag = req.query.tag;
     try {
         //check category
         if(tag){
@@ -99,7 +97,7 @@ const fetchPostsTagController = asyncHandler (async (req, res) => {
 //**********************************************************/
 const fetchPostController = asyncHandler (async (req, res) => {
     //check the id param
-    const {id} = req?.params;
+    const {id} = req.params;
     validID(id);
     try {
         //
@@ -120,17 +118,17 @@ const fetchPostController = asyncHandler (async (req, res) => {
 //UPDATE POST
 //**********************************************************/
 const updatePostController = asyncHandler (async (req, res) => {
-    const { id } = req?.params;
+    const { id } = req.params;
     validID(id);
-    const localPath = `Public/img/posts/${req?.file?.filename}`;
+    const localPath = `Public/img/posts/${req.file.filename}`;
     const img = await imgCloudinary(localPath);
     try {
         const post = await Post.findByIdAndUpdate(
         id,
         {
-            ...req?.body,
+            ...req.body,
             image: img?.url, 
-            user: req?.user?._id,
+            user: req.user?._id,
         },
         {
             new: true,
@@ -147,7 +145,7 @@ const updatePostController = asyncHandler (async (req, res) => {
 //**********************************************************/
 
 const removePostController = asyncHandler (async (req, res) => {
-    const { id } = req?.params;
+    const { id } = req.params;
     validID(id);
     try {
         const post = await Post.findByIdAndDelete(id);
@@ -161,7 +159,7 @@ const removePostController = asyncHandler (async (req, res) => {
 //**********************************************************/
 const likePostController = asyncHandler (async (req, res) => {
     //id post
-    const { postID } = req?.body;
+    const { postID } = req.body;
     const post = await Post.findById(postID);
     //user
     const logUser = req?.user?.id;
@@ -191,7 +189,7 @@ const likePostController = asyncHandler (async (req, res) => {
 //**********************************************************/
 const bookMarkPostController = asyncHandler (async (req, res) => {
     //id post
-    const { postID } = req?.body;
+    const { postID } = req.body;
     const post = await Post.findById(postID);
     //user
     const logUser = req?.user?.id;
@@ -225,7 +223,7 @@ const fetchSearchPostController = asyncHandler (async (req, res) => {
     try {
         //check category
         if(title){
-            const posts = await Post.find({"title" : {$regex: title, $options: 'i'}}).populate("user").populate("comments");
+            const posts = await Post.find({"title" : {$regex : title}}).populate("user").populate("comments");
             res.json(posts);
         }else{
             const posts = await Post.find({}).populate("user").populate("comments");
