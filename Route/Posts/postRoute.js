@@ -30,7 +30,7 @@ postRoute.use(function(req, res, next) {
 postRoute.use(cors());
 postRoute.options('*', cors());
 //create a post
-postRoute.post('/',cors(), authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
+postRoute.post('/',cors(), authorizationMiddleware, fileImages.single("file"), imgResize, createPostController);
 //likes post
 postRoute.put('/likes', authorizationMiddleware, likePostController);
 //likes post
