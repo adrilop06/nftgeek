@@ -15,7 +15,7 @@ const fs = require ('fs');
 const  createPostController = asyncHandler(async (req, res) =>{
     
     const {id} = req?.user;
-    //validID(id);
+    validID(id);
     const localPath = `Public/img/posts/${req?.file?.filename}`;
     const img = await imgCloudinary(localPath);
     console.log(img);
