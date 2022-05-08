@@ -96,4 +96,4 @@ app.use(eHandler);
 //create a dinamic port
 const PORT = process.env.PORT || 80;
 //check the server and port
-app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
+app.listen (PORT, console.log('Server is working properly in port: ',this.address().port, app.settings.env ));
