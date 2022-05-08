@@ -10,9 +10,9 @@ const validID = require ('../../Utils/idDBValidation');
 /************************************************************/
 const createCommentController = asyncHandler (async(req, res) =>{
    //find user
-   const user = req.user;
+   const user = req?.user;
    //grab the post by id
-   const { postID, body } = req.body;
+   const { postID, body } = req?.body;
    validID(postID);
    try {
      const comment = await Comment.create({
@@ -46,7 +46,7 @@ const fetchAllCommmentsController = asyncHandler (async (req, res) =>{
 //**********************************************************/
 const getOneCommentController = asyncHandler (async (req, res) => {
     //check the id param
-    const {id} = req.params;
+    const {id} = req?.params;
     validID(id);
     try {
         //
@@ -60,7 +60,7 @@ const getOneCommentController = asyncHandler (async (req, res) => {
 //UPDATE COMMENT
 //**********************************************************/
 const updateCommentController = asyncHandler (async (req, res) => {
-    const { id } = req.params;
+    const { id } = req?.params;
     validID(id);
 
     try {
@@ -87,7 +87,7 @@ const updateCommentController = asyncHandler (async (req, res) => {
 //**********************************************************/
 
 const removeCommentController = asyncHandler (async (req, res) => {
-    const { id } = req.params;
+    const { id } = req?.params;
     validID(id);
     try {
         const comment = await Comment.findByIdAndDelete(id);

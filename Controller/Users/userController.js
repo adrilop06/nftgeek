@@ -21,7 +21,7 @@ const userRegController = asyncHandler (async (req, res) => {
     const emailExist = await User.findOne({email: req?.body?.email});
     const userExist = await User.findOne({userName: req?.body?.userName});
     
-    const localPath = `Public/img/profile/${req.file.filename}`;
+    const localPath = `Public/img/profile/${req?.file?.filename}`;
     const img = await profileCloudinary(localPath);
     //is user already exist show error console message
     if(userExist) throw new Error ("This user name already exist");
@@ -52,7 +52,7 @@ const userRegController = asyncHandler (async (req, res) => {
 //LOGIN//
 /*****************************************************/  
 const userLogController = asyncHandler (async (req, res) =>{
-    const {userName, password} = req.body;
+    const {userName, password} = req?.body;
     //check the email at db 
     const user = await User.findOne({userName});
 
@@ -82,7 +82,7 @@ const userLogController = asyncHandler (async (req, res) =>{
 /**************************************************************/
 const userDeleteController = asyncHandler(async (req, res) =>{
     //recibe as an id the request param
-    const {id} = req.params;
+    const {id} = req?.params;
     //check if id is valid using the validID function created in isDBValidation.js
     validID(id);
     //try to find by ID and delte
@@ -115,7 +115,7 @@ const fetchUserController = asyncHandler (async (req, res) => {
 //see the users profiles
 const fetchUserDetail = asyncHandler(async (req, res) => {
     //get the id param from requests
-    const {id} = req.params;
+    const {id} = req?.params;
     //validate de id
     validID(id);
     try{
@@ -133,7 +133,7 @@ const fetchUserDetail = asyncHandler(async (req, res) => {
 /***************************************************/
 //ONLY the login users can see the profile
 const userProfileController = asyncHandler (async (req, res) => {
-    const {id} = req.params;
+    const {id} = req?.params;
     validID(id);
     try {
         const user = await User.findById(id).populate('posts').populate('bookmark');
@@ -173,8 +173,8 @@ const userUpdateController = asyncHandler (async (req, res) => {
 /********************************/
 const userUpdatePassController = asyncHandler(async (req, res) => {
     //destructure the login user
-    const { _id } = req.user;
-    const { password } = req.body;
+    const { _id } = req?.user;
+    const { password } = req?.body;
     validID(_id);
     //Find the user by _id
     const user = await User.findById(_id);
@@ -193,9 +193,9 @@ const userUpdatePassController = asyncHandler(async (req, res) => {
 //*********************************/
 const userPhotoController = asyncHandler(async (req, res) => {
    //Find the login user
-    const { id } = req.user;
+    const { id } = req?.user;
     //
-    const localPath = `Public/img/profile/${req.file.filename}`;
+    const localPath = `Public/img/profile/${req?.file?.filename}`;
     //
     const img = await profileCloudinary(localPath);
     console.log(img);

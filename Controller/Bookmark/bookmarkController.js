@@ -11,7 +11,7 @@ const validID = require ('../../Utils/idDBValidation');
 const  createBookmarkController = asyncHandler(async (req, res) =>{
     
     //user
-    const userID = req.user.id;
+    const userID = req?.user?.id;
     validID(userID);
 
  

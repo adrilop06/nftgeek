@@ -16,7 +16,7 @@ const createCategoryController = asyncHandler (async (req, res) => {
     try{
         const category = await Category.create({
             //post:postID,
-        ...req.body,
+        ...req?.body,
     });
         res.json(category);
     }catch(error){
@@ -52,34 +52,8 @@ const fetchCategoryController = asyncHandler (async (req, res) => {
 //UPDATE CATEGORY
 //**********************************************************/
 const updateCategoryController = asyncHandler (async (req, res) => {
-   /* const { id } = req.params;
-    validID(id);
-    const c = await Category.findById(id);
-    //grab the post 
-    const {postID} = req.body;
-   
-    const checkPost = c?.post?.find(
-
-        post => post === postID
-    );
-    if(checkPost){
-        const category = await Category.findByIdAndUpdate(id, {
-            $pull:{post:postID},
-            $inc: {number: -1}
-        },
-        { new: true});
-        res.json(category).populate('post');
-        
-    }else{
-        //new like
-        const category = await Category.findByIdAndUpdate(id, {
-            $push:{post:postID},
-            $inc: {number: 1}
-        }, { new: true}).populate('post');
-        res.json(category);
-        
-    }*/
-    const { id } = req.params;
+ 
+    const { id } = req?.params;
   try {
     const category = await Category.findByIdAndUpdate(
       id,
@@ -101,7 +75,7 @@ const updateCategoryController = asyncHandler (async (req, res) => {
 //**********************************************************/
 
 const removeCategoryController = asyncHandler (async (req, res) => {
-    const { id } = req.params;
+    const { id } = req?.params;
     try {
         const category = await Category.findByIdAndDelete(id);
         res.json(category);

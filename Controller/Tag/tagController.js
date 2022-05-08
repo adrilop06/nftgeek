@@ -17,7 +17,7 @@ const createTagController = asyncHandler (async (req, res) => {
     try{
         const tag = await Tag.create({
         //post:postID,
-        ...req.body,
+        ...req?.body,
     });
         res.json(tag);
     }catch(error){
@@ -127,7 +127,7 @@ if(checkPost){
 //**********************************************************/
 
 const removeTagController = asyncHandler (async (req, res) => {
-    const { id } = req.params;
+    const { id } = req?.params;
     try {
         const tag = await Tag.findByIdAndDelete(id, {$inc: {number: -1}});
         
