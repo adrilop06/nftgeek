@@ -15,6 +15,7 @@ const categoryRoute = express.Router();
 
 categoryRoute.use(cors());
 categoryRoute.options('*', cors());
+
 //create category
 categoryRoute.post('/',authorizationMiddleware, createCategoryController,);
 //Fetch all categorys
