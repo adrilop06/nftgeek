@@ -220,14 +220,16 @@ const bookMarkPostController = asyncHandler (async (req, res) => {
 const fetchSearchPostController = asyncHandler (async (req, res) => {
 
     const title = req?.query?.title;
-    console.log(title);
     try {
-
-  
-        const posts = await Post.find({"title" : {$regex : title}}).populate("user").populate("comments");
+        //check category
+        if(title){
+            const posts = await Post.find({"title" : {$regex : title}}).populate("user").populate("comments");
+            res.json(posts);
+        }else{
+            const posts = await Post.find({}).populate("user").populate("comments");
+            res.json(posts);
+        }
         res.json(posts);
-       
-
     }catch(error){
         res.json(error);
     }
