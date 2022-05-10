@@ -1,7 +1,6 @@
 //import express
 const express = require("express");
-//import dotenv
-const dotenv = require ("dotenv");
+
 //import cors
 const cors = require("cors");
 //import dbConnect
@@ -28,8 +27,7 @@ const cheerio = require('cheerio');
 //insert express like a function inside a const app
 const app = express();
 /************************************************************/
-//dotenv
-dotenv.config();
+
 
 /************************************************************/
 //data based
