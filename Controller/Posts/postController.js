@@ -222,10 +222,10 @@ const fetchSearchPostController = asyncHandler (async (req, res) => {
     const title = req?.query?.title;
     console.log(title);
     try {
-        //check category
+
   
-            const posts = await Post.find({"title" : {$regex : title}}).populate("user").populate("comments");
-            res.json(posts);
+        const posts = await Post.find({"title" : {$regex : title}}).populate("user").populate("comments");
+        res.json(posts);
        
 
     }catch(error){
