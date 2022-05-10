@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dq4jtliel
+  api_key: '186469361926977'
+  api_secret: bUYDrcPbFNwu3CJzqS_zc3--_DE
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: <%= ENV["CLOUDINARY_CLOUD_NAME"] %>
+  api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
+  api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dq4jtliel
+  api_key: '186469361926977'
+  api_secret: bUYDrcPbFNwu3CJzqS_zc3--_DE
+  enhance_image_tag: true
+  static_file_support: false
