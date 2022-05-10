@@ -220,6 +220,7 @@ const bookMarkPostController = asyncHandler (async (req, res) => {
 const fetchSearchPostController = asyncHandler (async (req, res) => {
 
     const title = req?.query?.title;
+    console.log(title);
     try {
         //check category
   
