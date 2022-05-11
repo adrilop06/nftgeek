@@ -1,5 +1,9 @@
 //import cloudinary
 const cloudinary = require('cloudinary');
+//import dotenv
+//const dotenv = require ("dotenv");
+//dotenv
+//dotenv.config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

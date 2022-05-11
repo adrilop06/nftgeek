@@ -1,6 +1,7 @@
 //import express
 const express = require("express");
-
+//import dotenv
+//const dotenv = require ("dotenv");
 //import cors
 const cors = require("cors");
 //import dbConnect
@@ -27,7 +28,8 @@ const cheerio = require('cheerio');
 //insert express like a function inside a const app
 const app = express();
 /************************************************************/
-
+//dotenv
+//dotenv.config();
 
 /************************************************************/
 //data based
@@ -92,6 +94,10 @@ app.use(eHandler);
 
 /************************************************************/
 //create a dinamic port
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 //check the server and port
-app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
+//app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
+
+app.listen(PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});

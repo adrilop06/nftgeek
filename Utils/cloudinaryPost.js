@@ -1,5 +1,10 @@
 //import cloudinary
 const cloudinary = require('cloudinary');
+//import dotenv
+//const dotenv = require ("dotenv");
+
+//dotenv
+//dotenv.config();
 
 
 cloudinary.config({
