@@ -96,8 +96,4 @@ app.use(eHandler);
 //create a dinamic port
 const PORT = process.env.PORT || 3000;
 //check the server and port
-//app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
-
-app.listen(PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
