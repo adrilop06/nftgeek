@@ -6,21 +6,21 @@ const cloudinary = require('cloudinary');
 //dotenv.config();
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+  api_key:process.env.CLOUDINARY_API_KEY,
+  api_secret:process.env.CLOUDINARY_API_SECRET,
   
 });
 
 //create a function that will called into user controller
-const profileCloudinary = async file =>{
+const profileCloudinary = async photo =>{
     try {
-        const data = await cloudinary.v2.uploader.upload(file, {
+        const data = await cloudinary.v2.uploader.upload(photo, {
           folder: "profile_photo",
           resource_type: "auto",
         });
         return {
-          url: data?.secure_url,
+          url:data?.secure_url,
         };
       } catch (error) {
         return error;

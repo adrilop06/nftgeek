@@ -61,10 +61,10 @@ const fetchPostsUserController = asyncHandler (async (req, res) => {
     try {
         //check category
         if(id){
-            const posts = await Post.find({user: id}).populate("user").populate("comments");
+            const posts = await Post.find({user: id}).populate("user").populate("comments").sort('-date');
             res.json(posts);
         }else{
-            const posts = await Post.find({}).populate("user").populate("comments");
+            const posts = await Post.find({}).populate("user").populate("comments").sort('-date');
             res.json(posts);
         }
         res.json(posts);
@@ -223,10 +223,10 @@ const fetchSearchPostController = asyncHandler (async (req, res) => {
     try {
         //check category
         if(title){
-            const posts = await Post.find({"title" : {$regex : title}}).populate("user").populate("comments");
+            const posts = await Post.find({"title" : {$regex : title}}).populate("user").populate("comments").exec();
             res.json(posts);
         }else{
-            const posts = await Post.find({}).populate("user").populate("comments");
+            const posts = await Post.find({}).populate("user").populate("comments").exec();
             res.json(posts);
         }
         res.json(posts);
