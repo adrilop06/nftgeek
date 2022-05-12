@@ -22,11 +22,13 @@ const bookmarkRoute = require("./Route/Bookmark/bookmarkRoute");
 const categoryRoute = require("./Route/Category/categoryRoute");
 const scrapMarketRoute = require("./Route/Scrap/scrapMarketRoute");
 const scrapNewsRoute = require("./Route/Scrap/scrapNewsRoute");
-const axios = require('axios');
-const cheerio = require('cheerio');
+
 /*************************************************************/
 //insert express like a function inside a const app
 const app = express();
+
+app.use(cors());
+app.options('*', cors());
 /************************************************************/
 //dotenv
 //dotenv.config();
@@ -55,8 +57,7 @@ app.use(function(req, res, next) {
 });
 
 */
-app.use(cors());
-app.options('*', cors());
+
 
 // app.options('*', cors(corsOptionsDelegate))
 //registration user process. Post and update user information
@@ -64,15 +65,15 @@ app.options('*', cors());
 //in case of user petition route check te kind and call the component post or get
 app.use('/api/users', userRoutes);
 //post routes
-app.use('/posts', cors(),postRoute)
+app.use('/api/posts',postRoute)
 //comment routes
 app.use('/api/comments', commentRoute);
 //tag routes
-app.use('/tag',cors(), tagRoute);
+app.use('/api/tag', tagRoute);
 //bookmark
 app.use('/api/bookmark', bookmarkRoute);
 //category routes
-app.use('/category',cors(), categoryRoute);
+app.use('/api/category', categoryRoute);
 
 app.use('/api/market', scrapMarketRoute);
 

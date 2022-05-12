@@ -1,6 +1,8 @@
 const express = require ('express');
 
 const cors = require("cors");
+tagRoute.use(cors());
+tagRoute.options('*', cors());
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
 const { 
@@ -14,8 +16,7 @@ const tagRoute = express.Router();
 
 
 
-tagRoute.use(cors());
-tagRoute.options('*', cors());
+
 
 //create tag
 tagRoute.post('/', authorizationMiddleware, createTagController);

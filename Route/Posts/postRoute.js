@@ -1,6 +1,8 @@
 const express = require ('express');
 
 const cors = require("cors");
+postRoute.use(cors());
+postRoute.options('*', cors());
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
 //impost post controller
@@ -28,8 +30,7 @@ postRoute.use(function(req, res, next) {
 });
 */
 
-postRoute.use(cors());
-postRoute.options('*', cors());
+
 //create a post
 postRoute.post('/', authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
 //likes post
