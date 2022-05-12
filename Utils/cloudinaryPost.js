@@ -1,5 +1,5 @@
 //import cloudinary
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require('cloudinary');
 //import dotenv
 //const dotenv = require ("dotenv");
 

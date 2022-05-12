@@ -18,7 +18,8 @@ const { createPostController,
  }= require('../../Controller/Posts/postController');
 const postRoute = express.Router();
 postRoute.use(cors());
-postRoute.options('*', cors());
+
+//postRoute.options('*', cors());
 
 const {fileImages, imgResize} = require('../../Middlewares/Upload/imgUpload');
 /*
@@ -30,7 +31,13 @@ postRoute.use(function(req, res, next) {
     next();
 });
 */
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
 
 //create a post
 postRoute.post('/', cors(), authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
