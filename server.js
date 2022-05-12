@@ -57,23 +57,23 @@ app.use(function(req, res, next) {
 
 */
 
-app.use(cors());
-//app.options('*', cors());
+//app.use(cors());
+app.options('*', cors());
 // app.options('*', cors(corsOptionsDelegate))
 //registration user process. Post and update user information
 //route user
 //in case of user petition route check te kind and call the component post or get
 app.use('/api/users',userRoutes);
 //post routes
-app.use('/api/posts',postRoute)
+app.use('/api/posts', cors(),postRoute)
 //comment routes
 app.use('/api/comments',commentRoute);
 //tag routes
-app.use('/api/tag',tagRoute);
+app.use('/api/tag', cors(),tagRoute);
 //bookmark
 app.use('/api/bookmark', bookmarkRoute);
 //category routes
-app.use('/api/category', categoryRoute);
+app.use('/api/category',cors(), categoryRoute);
 
 app.use('/api/market', scrapMarketRoute);
 

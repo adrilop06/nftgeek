@@ -13,7 +13,7 @@ const {
 
 const categoryRoute = express.Router();
 
-categoryRoute.use(cors());
+//categoryRoute.use(cors());
 categoryRoute.options('*', cors());
 
 //create category

@@ -19,7 +19,7 @@ const { createPostController,
 const postRoute = express.Router();
 
 
-//postRoute.options('*', cors());
+
 
 const {fileImages, imgResize} = require('../../Middlewares/Upload/imgUpload');
 /*
@@ -32,9 +32,10 @@ postRoute.use(function(req, res, next) {
 });
 */
 
-postRoute.use(cors());
+//postRoute.use(cors());
+postRoute.options('*', cors());
 //create a post
-postRoute.post('/', authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
+postRoute.post('/', cors(), authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
 //likes post
 postRoute.put('/likes', authorizationMiddleware, likePostController);
 //likes post
