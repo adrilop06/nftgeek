@@ -64,15 +64,15 @@ app.options('*', cors());
 //in case of user petition route check te kind and call the component post or get
 app.use('/api/users', userRoutes);
 //post routes
-app.use('/api/posts', cors(),postRoute)
+app.use('/posts', cors(),postRoute)
 //comment routes
 app.use('/api/comments', commentRoute);
 //tag routes
-app.use('/api/tag',cors(), tagRoute);
+app.use('/tag',cors(), tagRoute);
 //bookmark
 app.use('/api/bookmark', bookmarkRoute);
 //category routes
-app.use('/api/category',cors(), categoryRoute);
+app.use('/category',cors(), categoryRoute);
 
 app.use('/api/market', scrapMarketRoute);
 
