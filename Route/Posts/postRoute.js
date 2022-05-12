@@ -1,8 +1,7 @@
 const express = require ('express');
 
 const cors = require("cors");
-postRoute.use(cors());
-postRoute.options('*', cors());
+
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
 //impost post controller
@@ -18,6 +17,8 @@ const { createPostController,
         fetchSearchPostController
  }= require('../../Controller/Posts/postController');
 const postRoute = express.Router();
+postRoute.use(cors());
+postRoute.options('*', cors());
 
 const {fileImages, imgResize} = require('../../Middlewares/Upload/imgUpload');
 /*
