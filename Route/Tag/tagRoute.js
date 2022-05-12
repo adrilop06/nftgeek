@@ -18,7 +18,7 @@ tagRoute.use(cors());
 tagRoute.options('*', cors());
 
 //create tag
-tagRoute.post('/', authorizationMiddleware, createTagController);
+tagRoute.post('/', cors(), authorizationMiddleware, createTagController);
 //Fetch all tags
 tagRoute.get('/', fetchAllTagsController);
 //Fetch one tags
