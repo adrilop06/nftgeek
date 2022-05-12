@@ -20,7 +20,6 @@ const postRoute = express.Router();
 postRoute.use(cors());
 
 postRoute.options('*', cors());
-postRoute.post('*', cors());
 
 const {fileImages, imgResize} = require('../../Middlewares/Upload/imgUpload');
 /*

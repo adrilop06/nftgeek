@@ -17,7 +17,6 @@ const tagRoute = express.Router();
 
 tagRoute.use(cors());
 tagRoute.options('*', cors());
-tagRoute.post('*', cors());
 
 
 //create tag
