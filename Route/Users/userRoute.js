@@ -22,7 +22,7 @@ const {fileImages, profileResize } = require('../../Middlewares/Upload/imgUpload
 const userRoutes = express.Router();
 
 userRoutes.use(cors());
-userRoutes.options('*', cors());
+//userRoutes.options('*', cors());
 
 //reference de registration controller
 userRoutes.post('/registration', fileImages.single("photo"),profileResize, userRegController);
