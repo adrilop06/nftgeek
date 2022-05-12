@@ -13,12 +13,12 @@ const {
 const tagRoute = express.Router();
 
 
-
+/*
 tagRoute.use(cors());
 tagRoute.options('*', cors());
-
+*/
 //create tag
-tagRoute.post('/', cors(), authorizationMiddleware, createTagController);
+tagRoute.post('/', authorizationMiddleware, createTagController);
 //Fetch all tags
 tagRoute.get('/', fetchAllTagsController);
 //Fetch one tags
