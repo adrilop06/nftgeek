@@ -19,15 +19,15 @@ tagRoute.use(cors());
 tagRoute.options('*', cors());
 
 //create tag
-tagRoute.post('/', authorizationMiddleware, createTagController);
+tagRoute.post('/', cors(),authorizationMiddleware, createTagController);
 //Fetch all tags
-tagRoute.get('/', fetchAllTagsController);
+tagRoute.get('/', cors(),fetchAllTagsController);
 //Fetch one tags
-tagRoute.get('/:slug', fetchTagController);
+tagRoute.get('/:slug',cors(), fetchTagController);
 //Update tag
-tagRoute.put('/:slug', authorizationMiddleware, updateTagController);
+tagRoute.put('/:slug', cors(),authorizationMiddleware, updateTagController);
 //Remove tag
-tagRoute.delete('/:id', authorizationMiddleware, removeTagController);
+tagRoute.delete('/:id', cors(),authorizationMiddleware, removeTagController);
 
 
 module.exports = tagRoute;
