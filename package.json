@@ -8,9 +8,9 @@
   },
   "scripts": {
 
-    "start": "Backend/server.js",
 
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "author": "Adrián López Pazos",
   "license": "ISC",
