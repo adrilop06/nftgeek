@@ -1,7 +1,7 @@
 //import express
 const express = require("express");
 //import dotenv
-//const dotenv = require ("dotenv");
+const dotenv = require ("dotenv");
 //import cors
 const cors = require("cors");
 //import dbConnect
@@ -30,7 +30,7 @@ const app = express();
 
 /************************************************************/
 //dotenv
-//dotenv.config();
+dotenv.config();
 
 //app.use(cors());
 app.options('*', cors());
@@ -96,6 +96,6 @@ app.use(eHandler);
 
 /************************************************************/
 //create a dinamic port
-app.listen (process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);
 //check the server and port
 //app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
