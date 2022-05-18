@@ -32,6 +32,8 @@ const app = express();
 //dotenv
 //dotenv.config();
 
+//app.use(cors());
+app.options('*', cors());
 /************************************************************/
 //data based
 dbConnect();
@@ -57,8 +59,7 @@ app.use(function(req, res, next) {
 
 */
 
-//app.use(cors());
-app.options('*', cors());
+
 // app.options('*', cors(corsOptionsDelegate))
 //registration user process. Post and update user information
 //route user
