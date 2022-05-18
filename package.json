@@ -7,8 +7,6 @@
     "node":"v16.14.0" 
   },
   "scripts": {
-
-
     "start": "node server.js",
     "server": "nodemon server.js"
   },
