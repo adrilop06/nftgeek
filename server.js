@@ -2,6 +2,8 @@
 const express = require("express");
 //import dotenv
 const dotenv = require ("dotenv");
+//dotenv
+dotenv.config();
 //import cors
 const cors = require("cors");
 //import dbConnect
@@ -29,14 +31,13 @@ const app = express();
 
 
 /************************************************************/
-//dotenv
-dotenv.config();
+//data based
+dbConnect();
 
 //app.use(cors());
 app.options('*', cors());
 /************************************************************/
-//data based
-dbConnect();
+
 
 /************************************************************/
 //Middelware in express is a function that intercept the comunications and can 
@@ -71,11 +72,11 @@ app.use('/api/posts', cors(),postRoute)
 app.use('/api/comments',commentRoute);
 //tag routes
 app.use('/api/tag', cors(),tagRoute);
-//bookmark
-app.use('/api/bookmark', bookmarkRoute);
 //category routes
 app.use('/api/category',cors(), categoryRoute);
-
+//bookmark
+app.use('/api/bookmark', bookmarkRoute);
+//market 
 app.use('/api/market', scrapMarketRoute);
 
 app.use('/api/news', scrapNewsRoute);
@@ -96,6 +97,6 @@ app.use(eHandler);
 
 /************************************************************/
 //create a dinamic port
-app.listen(process.env.PORT || 3000);
-//check the server and port
-//app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, console.log(`Server is running ${PORT}`));

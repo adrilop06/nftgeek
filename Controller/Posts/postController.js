@@ -26,9 +26,11 @@ const  createPostController = asyncHandler(async (req, res) =>{
         userName:req?.userName,
         userImage:req?.user.photo,
     });
-        res.json(post);
+        
         //delete the img from folder after uploader
         fs.unlinkSync(localPath);
+        //return json 
+        res.json(post);
     }catch(error){
         res.json(error);
     }
