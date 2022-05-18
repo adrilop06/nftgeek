@@ -95,6 +95,6 @@ app.use(eHandler);
 
 /************************************************************/
 //create a dinamic port
-const PORT = process.env.PORT || 3000;
+app.listen (process.env.PORT || 3000);
 //check the server and port
-app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
+//app.listen (PORT, console.log('Server is working properly in port: ' + PORT ));
