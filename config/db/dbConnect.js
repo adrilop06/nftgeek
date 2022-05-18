@@ -5,7 +5,7 @@ const db = config.get("mongoURI");
 //arrow function that try to connect with data base and catch the error
 const dbConnect = async () => {
     try {
-        await mongoose.connect(db || process.env.MONGODB_URL, {
+        await mongoose.connect(process.env.MONGODB_URL|| db , {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
