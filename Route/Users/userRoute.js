@@ -25,7 +25,7 @@ userRoutes.use(cors());
 //userRoutes.options('*', cors());
 
 //reference de registration controller
-userRoutes.post('/registration', fileImages.single("photo"),profileResize, userRegController);
+userRoutes.post('/registration', cors(), fileImages.single("photo"),profileResize, userRegController);
 //reference de login controller
 userRoutes.post('/login', userLogController);
 //photo profile
