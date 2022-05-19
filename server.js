@@ -29,13 +29,13 @@ const scrapNewsRoute = require("./Route/Scrap/scrapNewsRoute");
 //insert express like a function inside a const app
 const app = express();
 
-
+//app.use(cors());
+app.options('*', cors());
 /************************************************************/
 //data based
 dbConnect();
 
-//app.use(cors());
-app.options('*', cors());
+
 /************************************************************/
 
 
