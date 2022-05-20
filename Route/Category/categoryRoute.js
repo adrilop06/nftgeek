@@ -1,4 +1,6 @@
 const express = require ('express');
+//import cors
+const cors = require("cors");
 
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
@@ -12,7 +14,8 @@ const {
 
 const categoryRoute = express.Router();
 
-
+categoryRoute.use(cors());
+categoryRoute.options('*', cors());
 
 //create category
 categoryRoute.post('/',authorizationMiddleware, createCategoryController,);

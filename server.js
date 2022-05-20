@@ -60,7 +60,7 @@ app.use('/api/comments',commentRoute);
 //tag routes
 app.use('/api/tag',cors(),tagRoute);
 //category routes
-app.use('/api/category', categoryRoute);
+app.use('/api/category',cors(), categoryRoute);
 //bookmark
 app.use('/api/bookmark', bookmarkRoute);
 //market 
