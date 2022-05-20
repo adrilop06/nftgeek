@@ -17,11 +17,11 @@ const { createPostController,
  }= require('../../Controller/Posts/postController');
 const postRoute = express.Router();
 
-
-
-
 const {fileImages, imgResize} = require('../../Middlewares/Upload/imgUpload');
 
+
+postRoute.use(cors());
+postRoute.options('*', cors());
 
 //create a post
 postRoute.post('/', authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
