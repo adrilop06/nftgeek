@@ -37,7 +37,7 @@ postRoute.get('/', fetchPostsTagController);
 //get all post user
 postRoute.get('/:id', fetchPostsUserController);
 //get one post by id
-postRoute.get('/:id',fetchPostController);
+postRoute.get('/profile/:id',fetchPostController);
 //get search
 postRoute.get('/results/:title', fetchSearchPostController);
 
