@@ -1,5 +1,4 @@
 const express = require ('express');
-const cors = require("cors");
 
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');
@@ -13,19 +12,18 @@ const {
 
 const categoryRoute = express.Router();
 
-//categoryRoute.use(cors());
-categoryRoute.options('*', cors());
+
 
 //create category
-categoryRoute.post('/',cors(),authorizationMiddleware, createCategoryController,);
+categoryRoute.post('/',authorizationMiddleware, createCategoryController,);
 //Fetch all categorys
-categoryRoute.get('/',cors(),authorizationMiddleware, fetchAllCategoryController,);
+categoryRoute.get('/',authorizationMiddleware, fetchAllCategoryController,);
 //Fetch one categorys
-categoryRoute.get('/:slug',cors(),authorizationMiddleware, fetchCategoryController);
+categoryRoute.get('/:slug',authorizationMiddleware, fetchCategoryController);
 //Update category
-categoryRoute.put('/:id',cors(),authorizationMiddleware, updateCategoryController);
+categoryRoute.put('/:id',authorizationMiddleware, updateCategoryController);
 //Remove category
-categoryRoute.delete('/:id',cors(),authorizationMiddleware, removeCategoryController);
+categoryRoute.delete('/:id',authorizationMiddleware, removeCategoryController);
 
 
 module.exports = categoryRoute;

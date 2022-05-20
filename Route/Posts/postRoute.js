@@ -1,6 +1,5 @@
 const express = require ('express');
 
-const cors = require("cors");
 
 //import middleware
 const authorizationMiddleware = require('../../Middlewares/Authotization/authorizationMiddleware');

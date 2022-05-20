@@ -28,15 +28,14 @@ const scrapNewsRoute = require("./Route/Scrap/scrapNewsRoute");
 /*************************************************************/
 //insert express like a function inside a const app
 const app = express();
-
-//app.use(cors());
-app.options('*', cors());
-/************************************************************/
 //data based
 dbConnect();
 
-
 /************************************************************/
+
+app.use(cors());
+//app.options('*', cors());
+
 
 
 /************************************************************/
@@ -49,31 +48,18 @@ In this case, the function is executed on requests that have a payload of json o
 app.use(express.json());
 
 
-/*
-//use cors
-//app.use(cors());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
-*/
-
-
-// app.options('*', cors(corsOptionsDelegate))
 //registration user process. Post and update user information
 //route user
 //in case of user petition route check te kind and call the component post or get
 app.use('/api/users',userRoutes);
 //post routes
-app.use('/api/posts', cors(),postRoute)
+app.use('/api/posts',postRoute)
 //comment routes
 app.use('/api/comments',commentRoute);
 //tag routes
-app.use('/api/tag', cors(),tagRoute);
+app.use('/api/tag',tagRoute);
 //category routes
-app.use('/api/category',cors(), categoryRoute);
+app.use('/api/category', categoryRoute);
 //bookmark
 app.use('/api/bookmark', bookmarkRoute);
 //market 
