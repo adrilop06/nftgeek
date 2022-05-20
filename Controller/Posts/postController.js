@@ -63,7 +63,7 @@ const fetchPostsUserController = asyncHandler (async (req, res) => {
     try {
         //check category
         if(id){
-            const posts = await Post.findOne({user: id}).populate("user").populate("comments").sort('-date');
+            const posts = await Post.find({user: id}).populate("user").populate("comments").sort('-date');
             res.json(posts);
         }
         
