@@ -65,6 +65,8 @@ const fetchPostsUserController = asyncHandler (async (req, res) => {
         if(id){
             const posts = await Post.find({user: id}).populate("user").populate("comments").sort('-date');
             res.json(posts);
+        }else{
+            console.log("no post yet");
         }
         
     }catch(error){
