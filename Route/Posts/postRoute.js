@@ -27,7 +27,7 @@ postRoute.options('*', cors());
 postRoute.post('/', authorizationMiddleware, fileImages.single("image"), imgResize, createPostController);
 //likes post
 postRoute.put('/likes', authorizationMiddleware, likePostController);
-//likes post
+//bookmark post
 postRoute.put('/mark', authorizationMiddleware, bookMarkPostController);
 //get all post
 postRoute.get('/',fetchPostsController);
