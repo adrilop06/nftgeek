@@ -33,8 +33,6 @@ dbConnect();
 
 /************************************************************/
 
-app.use(cors());
-//app.options('*', cors());
 
 
 
@@ -46,6 +44,9 @@ Middleware is an express function that sits between the request and the response
 In this case, the function is executed on requests that have a payload of json objects.
 */
 app.use(express.json());
+
+app.use(cors());
+//app.options('*', cors());
 
 
 //registration user process. Post and update user information

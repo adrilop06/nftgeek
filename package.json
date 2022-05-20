@@ -4,7 +4,7 @@
   "description": "Blog aplication for NFT games",
   "main": "server.js",
   "engines":{
-    "node":"16.14.0" 
+    "node":"16.x" 
   },
   "scripts": {
     "start": "node server.js",
