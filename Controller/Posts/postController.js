@@ -58,16 +58,13 @@ const fetchPostsController = asyncHandler (async (req, res) => {
 //GET ALL POSTS BY USER
 /*************************************************************/
 const fetchPostsUserController = asyncHandler (async (req, res) => {
-    const id = req?.query?.user;
+    const {id} = req?.user;
     
     try {
-        //check category
-        if(id){
-            const posts = await Post.find({user: id}).populate("user").populate("comments").sort('-date');
-            res.json(posts);
-        }else{
-            console.log("no post yet");
-        }
+
+        const posts = await Post.find({user: id}).populate("user").populate("comments").sort('-date');
+        res.json(posts);
+        
         
     }catch(error){
         res.json(error);
