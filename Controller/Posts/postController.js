@@ -58,7 +58,7 @@ const fetchPostsController = asyncHandler (async (req, res) => {
 //GET ALL POSTS BY USER
 /*************************************************************/
 const fetchPostsUserController = asyncHandler (async (req, res) => {
-    const {id} = req?.user;
+    const id = req?.query?.user;
     
     try {
         //check category
