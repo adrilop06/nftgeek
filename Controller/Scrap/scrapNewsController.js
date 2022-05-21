@@ -19,7 +19,7 @@ const  scrapNews = asyncHandler(async (req, res) =>{
 
     $("#leftColumn > div.largeTitle > article").each(function(i, element) {
 
-        if(i <= 10){
+        if(i <= 5){
         let link = $(element).children("#leftColumn > div.largeTitle > article > a").attr('href');
         let image = $(element).children().children('#leftColumn > div.largeTitle > article > a > img').attr('data-src');
         let alt = $(element).children().children('#leftColumn > div.largeTitle > article > a > img').attr('alt');
@@ -31,7 +31,20 @@ const  scrapNews = asyncHandler(async (req, res) =>{
           summary: summary
           
         });      
-    }
+      }
+      else if(i >= 6 && i<=8){
+        let link = $(element).children("#leftColumn > div.largeTitle > article > a").attr('href');
+        let image = $(element).children().children('#leftColumn > div.largeTitle > article > a > img').attr('data-src');
+        let alt = $(element).children().children('#leftColumn > div.largeTitle > article > a > img').attr('alt');
+        let summary = $(element).children().children("#leftColumn > div.largeTitle > article > div.textDiv > a").attr('title');
+        results.push({
+          link: link,
+          image: image,
+          alt:alt,
+          summary: summary
+          
+        });      
+      }
       });
    
     //console.log(results);
