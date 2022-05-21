@@ -32,7 +32,7 @@ const  scrapNews = asyncHandler(async (req, res) =>{
           
         });      
       }
-      else if(i >= 8 && i<=9){
+      else if(i >= 9 && i<=20){
         let link = $(element).children("#leftColumn > div.largeTitle > article > a").attr('href');
         let image = $(element).children().children('#leftColumn > div.largeTitle > article > a > img').attr('data-src');
         let alt = $(element).children().children('#leftColumn > div.largeTitle > article > a > img').attr('alt');
