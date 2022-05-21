@@ -23,7 +23,7 @@ const  createPostController = asyncHandler(async (req, res) =>{
         ...req.body,
         image: img?.url, 
         user: id,
-        userName:req?.userName,
+        userName:req?.user.userName,
         userImage:req?.user.photo,
     });
         
