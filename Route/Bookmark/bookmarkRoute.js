@@ -17,7 +17,7 @@ const {
 //create bookmark
 bookmarkRoute.post('/',authorizationMiddleware, createBookmarkController);
 //get all bookmarks
-bookmarkRoute.get('/',authorizationMiddleware, fetchAllBookmarkController);
+bookmarkRoute.get('/', fetchAllBookmarkController);
 //get one bookmark
 bookmarkRoute.get('/:id',authorizationMiddleware, getOneBookmarkController);
 //update bookmark
