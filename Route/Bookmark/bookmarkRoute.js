@@ -7,6 +7,7 @@ const {
     createBookmarkController,
     getOneBookmarkController,
     updateBookmarkController,
+    fetchAllBookmarkController
     
 } = require('../../Controller/Bookmark/bookmarkController');
 
@@ -15,9 +16,10 @@ const {
 
 //create bookmark
 bookmarkRoute.post('/',authorizationMiddleware, createBookmarkController);
-
+//get all bookmarks
+bookmarkRoute.get('/',authorizationMiddleware, fetchAllBookmarkController);
 //get one bookmark
-bookmarkRoute.get('/',authorizationMiddleware, getOneBookmarkController);
+bookmarkRoute.get('/:id',authorizationMiddleware, getOneBookmarkController);
 //update bookmark
 bookmarkRoute.put('/',authorizationMiddleware, updateBookmarkController);
 module.exports = bookmarkRoute;
