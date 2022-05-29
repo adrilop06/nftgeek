@@ -20,13 +20,13 @@ categoryRoute.options('*', cors());
 //create category
 categoryRoute.post('/',authorizationMiddleware, createCategoryController,);
 //Fetch all categorys
-categoryRoute.get('/',authorizationMiddleware, fetchAllCategoryController,);
+categoryRoute.get('/', fetchAllCategoryController,);
 //Fetch one categorys
-categoryRoute.get('/:slug',authorizationMiddleware, fetchCategoryController);
+categoryRoute.get('/:slug', fetchCategoryController);
 //Update category
-categoryRoute.put('/:id',authorizationMiddleware, updateCategoryController);
+categoryRoute.put('/:id', updateCategoryController);
 //Remove category
-categoryRoute.delete('/:id',authorizationMiddleware, removeCategoryController);
+categoryRoute.delete('/:id', removeCategoryController);
 
 
 module.exports = categoryRoute;

@@ -31,7 +31,7 @@ userRoutes.post('/login', userLogController);
 //photo profile
 userRoutes.put('/profilephoto', authorizationMiddleware, fileImages.single("image"), profileResize, userPhotoController);
 //get all users 
-userRoutes.get('/', authorizationMiddleware, fetchUserController);
+userRoutes.get('/', fetchUserController);
 //change the password by the user
 userRoutes.put('/password',authorizationMiddleware, userUpdatePassController);
 //get the user profile

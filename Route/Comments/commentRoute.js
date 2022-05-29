@@ -18,9 +18,9 @@ commentRoute.options('*', cors());
 //create comment
 commentRoute.post('/',authorizationMiddleware, createCommentController);
 //Fetch all comments
-commentRoute.get('/',authorizationMiddleware, fetchAllCommmentsController);
+commentRoute.get('/', fetchAllCommmentsController);
 //Get one comment
-commentRoute.get('/:id',authorizationMiddleware, getOneCommentController);
+commentRoute.get('/:id', getOneCommentController);
 //Update comment
 commentRoute.put('/:id',authorizationMiddleware, updateCommentController);
 //Remove comment

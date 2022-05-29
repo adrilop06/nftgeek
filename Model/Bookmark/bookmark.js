@@ -7,15 +7,7 @@ const bookmarkSchema = new mongoose.Schema({
         ref:'user',
         required:[true, 'User is required']
     }, 
-  /*  numPost:{
-        type: Number,
-        default: 0,
-    }, 
-    post:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "post",
-    }], 
-*/
+
 },
 {
     toJSON: {

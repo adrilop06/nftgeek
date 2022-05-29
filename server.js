@@ -84,6 +84,14 @@ app.use(eHandler);
 
 /************************************************************/
 //create a dinamic port
+const PORT = process.env.PORT || 5000;
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, console.log(`Server is running ${PORT}`));
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, function(){
+    console.log('Server is working properly in port: ' + PORT )
+  }); 
+}
+
+
+
+module.exports = app;

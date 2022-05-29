@@ -27,9 +27,9 @@ tagRoute.get('/',fetchAllTagsController);
 //Fetch one tags
 tagRoute.get('/:slug', fetchTagController);
 //Update tag
-tagRoute.put('/:slug',authorizationMiddleware, updateTagController);
+tagRoute.put('/:slug', updateTagController);
 //Remove tag
-tagRoute.delete('/:id',authorizationMiddleware, removeTagController);
+tagRoute.delete('/:id', removeTagController);
 
 
 module.exports = tagRoute;
