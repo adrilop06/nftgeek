@@ -13,22 +13,40 @@ describe("Post routes", () => {
   function loginUser(auth) {
     return function(done) {
        request(server)
-            .post('/api/users/login')
-            .send({
-                userName: 'test',
-                password: 'test'
-            })
+          .post('/api/users/login')
+          .send({
+              userName: 'test',
+              password: 'test'
+          })
             .expect(200)
             .end(onResponse);
   
         function onResponse(err, res) {
             auth.token = res.body.token;
-            auth._id = res.body._id
+            auth.id = res.body._id;
             return done();
         }
     };
   }
   
+//POST
+
+  
+test("POST /api/posts", async () => {
+
+  await request(server)
+    .post("/api/posts")
+    .set('Authorization', 'GEEK ' + auth.token)
+    .send({ 
+      title:"Testeo Post",
+      category:"juegos",
+      tag: "Testeo Jest",
+      body: "Testeo post",
+      user: auth.id
+    })
+    .expect(200)
+  
+});
 //test all the routes
 //test get posts
   test('GET Posts', async () => {
@@ -39,7 +57,7 @@ describe("Post routes", () => {
   });
 
   //test get one post created
-  test("POST and GET ONE POST /api/posts/:id", async () => {
+  test("GET ONE POST /api/posts/:id", async () => {
     const post = await Post.create({
         title:"Testeo Jest",
         category:"juegos",
@@ -69,87 +87,76 @@ describe("Post routes", () => {
       }) 
   });
 
+  
   //PUT post by ID
-  test('PUT /users/:id', async () => {
-    const post = Post.create({
-      title:"Testeo Jest updated",
+  test("PATCH /api/posts/:id", async () => {
+    const post = await Post.create({
+      title:"Testeo updated",
       category:"juegos",
       tag: "Testeo Jest",
       body: "Testeo post",
-      user: "6293bcadb1c8ebed3701971a"
+      user: auth.id
     })
-    const data ={
+  
+    const data = {
       title:"Post Updated",
-      category:"juegos",
-      tag: "Testeo Jest",
-      body: "Testeo post",
-      user: "6293bcadb1c8ebed3701971a"
+      body: "Tested",
     }
+  
     await request(server)
-        .put(`/api/posts/${post.id}`)
-        .set('Authorization', 'GEEK ' + auth.token)
-        .send(data)
-        .expect(200)
-        .then((response) => {
-          expect(response.body._id).toBe(post.id)
-          expect(response.body.title).toBe(data.title)
-          expect(response.body.body).toBe(data.body)
-          expect(response.body.tag).toBe(data.tag)
-          expect(response.body.category).toBe(data.category)
-          expect(response.body.user._id).toEqual(data.user.toString())     
-        }) 
-      await request(server)
-        .delete("/api/posts/" + post.id)
-        .set('Authorization', 'GEEK ' + auth.token)
-        .expect(200)
-        .then(async () => {
-          expect(await Post.findOne({ _id: post.id })).toBeFalsy()
-        })
-  });
+      .put("/api/posts/" + post.id)
+      .set('Authorization', 'GEEK ' + auth.token)
+      .send(data)
+      .expect(200)
+      .then(async (response) => {
+        // Check the response
+        expect(response.body._id).toBe(post.id)
+        expect(response.body.title).toBe(data.title)
+        expect(response.body.body).toBe(data.body)
+  
+        // Check the data in the database
+        const newPost = await Post.findOne({ _id: response.body._id })
+        expect(newPost).toBeTruthy()
+        expect(newPost.title).toBe(data.title)
+        expect(newPost.body).toBe(data.body)
+      })
+  })
 
+
+
+
+
+  
 //test likes posts
 test('PUT /users/likes', async () => {
-  const post = Post.create({
-    title:"Testeo Jest likes",
+  const post = await Post.create({
+    title:"Testeo updated",
     category:"juegos",
     tag: "Testeo Jest",
     body: "Testeo post",
-    user: "6293bcadb1c8ebed3701971a"
+    user: auth.id
   })
 
   await request(server)
       .put(`/api/posts/likes`)
       .set('Authorization', 'GEEK ' + auth.token)
       .send({
-        postID:post._id
+        postID:post.id
       })
       .expect(200)
-
-    await request(server)
-      .delete("/api/posts/" + post.id)
+  
+  await request(server)
+      .put(`/api/posts/mark`)
       .set('Authorization', 'GEEK ' + auth.token)
-      .expect(200)
-      .then(async () => {
-        expect(await Post.findOne({ _id: post.id })).toBeFalsy()
+      .send({
+        postID:post.id
       })
+      .expect(200)
+
 });
 
 
-
-it("it shoud return status code 400 if we dosent send anything", function(done){
-  request(server)
-    .post("/api/posts")
-    .send({
-      title:"Testeo Post",
-      category:"juegos",
-      tag: "Testeo Jest",
-      body: "Testeo post"})
-    .expect(400)
-    .end(function(err, res){
-      if (err) done(err);
-      done();
-    });
-});
+  
 
 
 

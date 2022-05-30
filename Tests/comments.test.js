@@ -22,7 +22,7 @@ describe("Comments routes", () => {
     const comment = await Comment.create({
         body:"testing comment",
         post: "62773e30082d5e859722f004", 
-        user:"62773c8e0e8049d9fbb66475"
+        user:auth.id
     })
   
     await request(server)
@@ -50,13 +50,13 @@ describe("Comments routes", () => {
     const comment = await Comment.create({
         body:"testing comment",
         post: "62773e30082d5e859722f004", 
-        user:"62773c8e0e8049d9fbb66475"
+        user:auth.id
     })
     
     const updateComment = {
         body:"update comment",
         post: "62773e30082d5e859722f004", 
-        user:"62773c8e0e8049d9fbb66475"
+        
       }
     await request(server)
       .put("/api/comments/" + comment._id)
@@ -66,7 +66,7 @@ describe("Comments routes", () => {
       .then((response) => {
         expect(response.body._id).toEqual(comment._id.toString())  
         expect(response.body.post).toEqual(updateComment.post.toString())   
-        expect(response.body.user._id).toEqual(updateComment.user.toString())   
+        expect(response.body.user._id).toEqual(auth.id)   
       })
 
     await request(server)
@@ -88,14 +88,15 @@ describe("Comments routes", () => {
        request(server)
             .post('/api/users/login')
             .send({
-                userName: 'adrian',
-                password: '001'
+                userName: 'test',
+                password: 'test'
             })
             .expect(200)
             .end(onResponse);
 
         function onResponse(err, res) {
             auth.token = res.body.token;
+            auth.id = res.body._id
             return done();
         }
     };

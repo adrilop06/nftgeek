@@ -21,7 +21,7 @@ describe("Bookmarks routes", () => {
   //create bookmark, get bookmark and delete
   test("CREATE bookmark and GET", async () => {
     const bookmark = await Bookmark.create({
-      user:"6293bcadb1c8ebed3701971a",
+      user:auth.id,
     
     })
 
@@ -51,6 +51,7 @@ describe("Bookmarks routes", () => {
 
         function onResponse(err, res) {
             auth.token = res.body.token;
+            auth.id = res.body._id
             return done();
         }
     };
